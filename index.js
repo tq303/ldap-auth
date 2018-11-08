@@ -3,9 +3,11 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const LdapStrategy = require('passport-ldapauth');
 
-const OPTS = {
+const PORT = 8080;
+
+const options = {
   server: {
-    url: 'ldap://baywater.co.uk',
+    url: 'ldap://domain.co',
     bindDN: 'cn=root',
     bindCredentials: 'secret',
     searchBase: 'ou=passport-ldapauth',
@@ -15,14 +17,14 @@ const OPTS = {
 
 const app = express();
 
-passport.use(new LdapStrategy(OPTS));
+passport.use(new LdapStrategy(options));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(passport.initialize());
 
-app.post('/login', passport.authenticate('ldapauth', {session: false}), function(req, res) {
-  res.send({status: 'ok'});
+app.post('/login', passport.authenticate('ldapauth', {session: false}), (req, res) => {
+  res.send({ status: 'ok' });
 });
 
-app.listen(8080);
+app.listen(PORT);
