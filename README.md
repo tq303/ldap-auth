@@ -2,8 +2,10 @@
 
 ## Prerequisites
 ```
-node LTS
+node ^8
 yarn or npm
+bash
+ldapsearch (only required for the cli test script)
 ```
 
 ## Express
