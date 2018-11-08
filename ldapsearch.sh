@@ -2,7 +2,7 @@
 HOST="domain.co"
 BIND_DN="cn=root"
 SID="(uid={{username}})"
-USER_NAME=""
+USERNAME=""
 PASSWORD=""
 
-ldapsearch -x -LLL -h ${HOST} -D ${USER_NAME} -w ${PASSWORD} -b ${BIND_DN} -s sub ${SID}
+ldapsearch -x -LLL -h ${HOST} -D ${USERNAME} -w ${PASSWORD} -b ${BIND_DN} -s sub ${SID}
